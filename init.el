@@ -36,7 +36,7 @@
   '(;; makes handling lisp expressions much, much easier
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
     paredit
-
+    auto-complete
     ;; key bindings and code colorization for Clojure
     ;; https://github.com/clojure-emacs/clojure-mode
     clojure-mode
@@ -47,17 +47,22 @@
     ;; integration with a Clojure REPL
     ;; https://github.com/clojure-emacs/cider
     cider
-
+    ac-cider
     ;; allow ido usage in as many contexts as possible. see
     ;; customizations/navigation.el line 23 for a description
     ;; of ido
     ido-ubiquitous
 
+    markdown-mode
+    ;;markdown-mode+
+    markdown-preview-mode
+    markdown-toc
     ;; Enhances M-x to allow easier execution of commands. Provides
     ;; a filterable list of possible commands in the minibuffer
     ;; http://www.emacswiki.org/emacs/Smex
     smex
 
+    on-screen
     ;; project navigation
     projectile
 
@@ -132,3 +137,21 @@
 ;; Langauage-specific
 (load "setup-clojure.el")
 (load "setup-js.el")
+
+(defun iwb ()  
+        "indent whole buffer"  
+        (interactive)  
+        (delete-trailing-whitespace)  
+        (indent-region (point-min) (point-max) nil))  
+
+(global-set-key (kbd "M-5") 'iwb) ;; format all text in a buffer
+
+(require 'on-screen)
+(on-screen-global-mode +1)
+
+
+(autoload 'markdown-mode "markdown-mode"
+       "Major mode for editing Markdown files" t)
+    (add-to-list 'auto-mode-alist '("\\.text\\'" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\.markdown\\'" . markdown-mode))
+    (add-to-list 'auto-mode-alist '("\\.md\\'" . markdown-mode))
