@@ -12,6 +12,10 @@
 ;; A little more syntax highlighting
 (require 'clojure-mode-extra-font-locking)
 
+(add-hook 'cider-repl-mode-hook #'company-mode)
+
+(add-hook 'cider-mode-hook #'company-mode)
+
 ;; syntax hilighting for midje
 (add-hook 'clojure-mode-hook
           (lambda ()

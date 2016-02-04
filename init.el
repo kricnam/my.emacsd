@@ -35,6 +35,7 @@
 (defvar my-packages
   '(;; makes handling lisp expressions much, much easier
     ;; Cheatsheet: http://www.emacswiki.org/emacs/PareditCheatsheet
+    company
     paredit
     auto-complete
     ;; key bindings and code colorization for Clojure
